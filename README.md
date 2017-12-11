@@ -40,8 +40,11 @@ This app was inspired by the estate sales and auto auctions that team member Max
 ## Wireframes
 
 
+![image1](http://www.smiley.com/sites/default/files/BRAND_SMILEY_MAIN.jpg)
+
+
 <p align=“center”>
-  <img width=“80%” height=“80%” src=“http://www.smiley.com/sites/default/files/BRAND_SMILEY_MAIN.jpg” />
+  <img src=“http://www.smiley.com/sites/default/files/BRAND_SMILEY_MAIN.jpg” />
 </p>
 
 
