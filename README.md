@@ -38,8 +38,10 @@ This app was inspired by the estate sales and auto auctions that team member Max
 * Started skeleton for project, initialized database and built first model
 
 ## Wireframes
-![home page](http://www.smiley.com/sites/default/files/BRAND_SMILEY_MAIN.jpg)
+![home page](https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%201.png)
+
 ![show page](https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%202.png)
+
 ![auction page](https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%203.png)
 
 ## Team Members & Project Timeline
