@@ -38,8 +38,15 @@ This app was inspired by the estate sales and auto auctions that team member Max
 * Started skeleton for project, initialized database and built first model
 
 ## Wireframes
-![Home Page](https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%201.png)
-
+<p align=“center”>
+  <img width=“80%” height=“80%” src=“https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%201.png” />
+</p>
+<p align=“center”>
+  <img width=“80%” height=“80%” src=“https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%202.png” />
+</p>
+<p align=“center”>
+  <img width=“80%” height=“80%” src=“https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%203.png” />
+</p>
 ## Team Members & Project Timeline
 
 Max Tocarev, Maxine Chui, Joey Doyle, Wilson Chun
