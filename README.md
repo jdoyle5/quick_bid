@@ -39,7 +39,7 @@ This app was inspired by the estate sales and auto auctions that team member Max
 
 ## Wireframes
 <p align=“center”>
-  <img width=“80%” height=“80%” src=“https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%201.png” />
+  <img width=“80%” height=“80%” src=“http://www.smiley.com/sites/default/files/BRAND_SMILEY_MAIN.jpg” />
 </p>
 <p align=“center”>
   <img width=“80%” height=“80%” src=“https://raw.githubusercontent.com/jdoyle5/quick_bid/master/docs/wireframes/Screen%202.png” />
