@@ -7,6 +7,8 @@ import configureStore from './store/store';
 
 const store = configureStore({});
 
+console.log(store.getState());
+
 class Root extends Component {
   render () {
     return (

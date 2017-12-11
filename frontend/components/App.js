@@ -5,11 +5,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Auth from './OAuth/auth';
+import AuthContainer from './OAuth/auth_container';
 
 const App = () => (
   <View style={styles.container}>
-    < Auth />
+    < AuthContainer />
   </View>
 );
 
