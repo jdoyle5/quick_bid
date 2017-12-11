@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View
-} from 'react-native';
 import { Provider } from 'react-redux';
-// import Auth from './components/OAuth/auth';
 import App from './components/App';
 
 
