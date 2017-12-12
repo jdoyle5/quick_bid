@@ -9,6 +9,9 @@ var itemSchema = new Schema({
   img_url: String,
   categoryId: Number,
   msrp: Number,
+  bid_time: String,
+  highest_bid: Number,
+  highest_bidder: Number
 });
 
 // Export Mongoose model
