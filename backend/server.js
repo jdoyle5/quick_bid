@@ -4,9 +4,25 @@ import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 // Import Facebook and Google OAuth apps configs
 import { facebook, google } from './config';
+//MongoDB
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
+
+// Initialize http server
+const app = express();
+
+//socket.io
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+// Launch the server on the port 3000
+
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  const { address, port } = server.address();
+  console.log(`Listening at http://${address}:${port}`);
+});
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/items');
@@ -45,8 +61,6 @@ passport.serializeUser((user, done) => done(null, user));
 // Deserialize user from the sessions
 passport.deserializeUser((user, done) => done(null, user));
 
-// Initialize http server
-const app = express();
 
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
@@ -77,9 +91,3 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
   (req, res) => res.redirect('OAuthLogin://login?user=' + JSON.stringify(req.user)));
-
-// Launch the server on the port 3000
-const server = app.listen(3000, () => {
-  const { address, port } = server.address();
-  console.log(`Listening at http://${address}:${port}`);
-});
