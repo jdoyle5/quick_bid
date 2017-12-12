@@ -10,7 +10,8 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 
-export default class App extends Component {
+
+export default class Auth extends Component {
 
   state = {
     user: undefined, // user has not logged in yet
@@ -36,10 +37,15 @@ export default class App extends Component {
   handleOpenURL = ({ url }) => {
     // Extract stringified user string out of the URL
     const [, user_string] = url.match(/user=([^#]+)/);
+    const user = JSON.parse(decodeURI(user_string))
     this.setState({
       // Decode the user string and parse it into JSON
-      user: JSON.parse(decodeURI(user_string))
+      // user: JSON.parse(decodeURI(user_string))
+      user
     });
+
+    this.props.receiveCurrentUser(user);
+
     if (Platform.OS === 'ios') {
       SafariView.dismiss();
     }
