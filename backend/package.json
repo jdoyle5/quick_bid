@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
+    "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js",
+    "populate": "node_modules/babel-cli/bin/babel-node.js populate.js"
   },
   "keywords": [],
   "author": "",
@@ -17,8 +20,12 @@
     "nodemon": "^1.12.5"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
+    "moment": "^2.19.4",
+    "mongoose": "^4.13.6",
+    "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0"

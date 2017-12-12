@@ -4,6 +4,12 @@ import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 // Import Facebook and Google OAuth apps configs
 import { facebook, google } from './config';
+import morgan from 'morgan';
+import mongoose from 'mongoose';
+import router from './router';
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/items');
 
 // Transform Facebook profile because Facebook and Google profile objects look different
 // and we want to transform them into user objects that have the same set of attributes
@@ -41,6 +47,17 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // Initialize http server
 const app = express();
+
+// Logger that outputs all requests into the console
+app.use(morgan('combined'));
+
+// Use v1 as prefix for all API endpoints
+app.use('/v1', router);
+
+// Handle / route
+app.get('/', (req, res) =>
+  res.send('Hello World!')
+)
 
 // Initialize Passport
 app.use(passport.initialize());
