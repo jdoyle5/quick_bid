@@ -63,7 +63,8 @@ const transformFacebookProfile = (profile) => ({
 // Transform Google profile into user object
 const transformGoogleProfile = (profile) => ({
   name: profile.displayName,
-  avatar: profile.image.url
+  // avatar: profile.image.url
+  id: profile.id
 });
 
 // Register Facebook Passport strategy

@@ -8,5 +8,5 @@ export const facebook = {
 export const google = {
   clientID: '395846928821-6g8u489db9musdgpm31laubcdbtrsb5c.apps.googleusercontent.com',
   clientSecret: '3HxfCVgt_Lh0EyO4vRLbVKjA',
-  callbackURL: 'http://localhost:3000/auth/google/callback',
+  callbackURL: 'http://localhost:3000/auth/google/callback'
 };

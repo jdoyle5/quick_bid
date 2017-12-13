@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import { StackNavigator } from "react-navigation";
-import SecondScreen from "./components/Test/test";
+import { TabNavigator } from "react-navigation";
+import HomeContainer from "./components/Home/home_container";
 
 
 import configureStore from './store/store';
@@ -12,7 +12,7 @@ const store = configureStore({});
 console.log(store.getState());
 
 
-const reactNavigationSample = props => {
+const Authentication = props => {
   return (
     <Provider store={store}>
       <App navigation={props.navigation} />
@@ -20,13 +20,21 @@ const reactNavigationSample = props => {
   );
 };
 
-reactNavigationSample.navigationOptions = {
+Authentication.navigationOptions = {
   title: "Login"
 };
 
-const Root = StackNavigator({
-  Home: { screen: reactNavigationSample },
-  SecondScreen: { screen: SecondScreen, title: "Second Screen" }
+const Home = props => {
+  return (
+    <Provider store={store}>
+      <HomeContainer navigation={props.navigation} />
+    </Provider>
+  );
+};
+
+const Root = TabNavigator({
+  Home: { screen: Home },
+  Login: { screen: Authentication, title: "Login" }
 });
 
 export default Root;
