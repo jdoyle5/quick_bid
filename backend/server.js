@@ -8,8 +8,49 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
 
+// Initialize http server
+const app = express();
+
+//Socket.io
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+// Launch the server on the port 3000
+
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  const { address, port } = server.address();
+  console.log(`Listening at http://${address}:${port}`);
+});
+
+io.on('connection', function(socket) {
+  // console.log('Client connected on', socket.id);
+  console.log('Connected!');
+  socket.on('Client connected!', () => {
+    console.log('Socket connection working');
+  });
+  socket.on('disconnect', () => console.log('Disconnected'));
+  socket.emit('connected');
+});
+
+//MongoDB
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/items');
+// Logger that outputs all requests into the console
+app.use(morgan('combined'));
+
+// Use v1 as prefix for all API endpoints
+app.use('/v1', router);
+
+// Handle / route
+app.get('/', (req, res) =>
+res.send('Hello World!')
+)
+
+
+//OAuth
 
 // Transform Facebook profile because Facebook and Google profile objects look different
 // and we want to transform them into user objects that have the same set of attributes
@@ -45,20 +86,6 @@ passport.serializeUser((user, done) => done(null, user));
 // Deserialize user from the sessions
 passport.deserializeUser((user, done) => done(null, user));
 
-// Initialize http server
-const app = express();
-
-// Logger that outputs all requests into the console
-app.use(morgan('combined'));
-
-// Use v1 as prefix for all API endpoints
-app.use('/v1', router);
-
-// Handle / route
-app.get('/', (req, res) =>
-  res.send('Hello World!')
-)
-
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -77,9 +104,3 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
   (req, res) => res.redirect('OAuthLogin://login?user=' + JSON.stringify(req.user)));
-
-// Launch the server on the port 3000
-const server = app.listen(3000, () => {
-  const { address, port } = server.address();
-  console.log(`Listening at http://${address}:${port}`);
-});
