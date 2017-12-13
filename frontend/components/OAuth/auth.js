@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 
 
+
 export default class Auth extends Component {
 
   state = {
@@ -33,6 +34,10 @@ export default class Auth extends Component {
     // Remove event listener
     Linking.removeEventListener('url', this.handleOpenURL);
   };
+
+  // added in max
+
+  // added again
 
   handleOpenURL = ({ url }) => {
     // Extract stringified user string out of the URL
