@@ -15,6 +15,7 @@ const app = express();
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var bodyParser = require('body-parser');
 
 // Launch the server on the port 3000
 
@@ -41,8 +42,16 @@ mongoose.connect('mongodb://localhost/items');
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(express.json());
+
 // Use v1 as prefix for all API endpoints
 app.use('/v1', router);
+
 
 // Handle / route
 app.get('/', (req, res) =>
@@ -57,14 +66,14 @@ res.send('Hello World!')
 const transformFacebookProfile = (profile) => ({
   name: profile.name,
   avatar: profile.picture.data.url,
-  profile
+  key: profile.id
 });
 
 // Transform Google profile into user object
 const transformGoogleProfile = (profile) => ({
   name: profile.displayName,
-  // avatar: profile.image.url
-  id: profile.id
+  avatar: profile.image.url,
+  key: profile.id
 });
 
 // Register Facebook Passport strategy

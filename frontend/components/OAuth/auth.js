@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 
 
+
 export default class Auth extends Component {
 
   state = {
@@ -44,7 +45,9 @@ export default class Auth extends Component {
       user
     });
 
-    this.props.receiveCurrentUser(user);
+    // APIUtil.postUser(user);
+
+    this.props.createUser(user);
 
     if (Platform.OS === 'ios') {
       SafariView.dismiss();

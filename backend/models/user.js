@@ -2,11 +2,11 @@ import mongoose, { Schema } from 'mongoose';
 
 // Define user schema
 var userSchema = new Schema({
-  id: {
+  key: {
     type: String,
-    unique: true,
   },
   name: String,
+  avatar: String
 });
 
 // Export Mongoose model

@@ -1,19 +1,46 @@
 import Item from '../models/item';
 import mongoose, { Schema } from 'mongoose';
+import User from '../models/user';
 // import moment from 'moment';
 
-export const index = (req, res, next) => {
-  Item.find().lean().exec((err, items) => res.json(
-    { items }
-  ));
-};
+// export const create = (req, res, next) => {
+//   mongoose.model('user').create({
+//     id: user.id,
+//     name: user.name
+//   });
+// };
 
 export const create = (req, res, next) => {
-  mongoose.model('user').create({
-    id: currentUser.id,
-    name: currentUser.name
-  });
+  // var user = User.findOne({key: req.body.key});
+  User.findOne({key: req.body.key}).lean()
+      .exec((err, resUser) => (resUser))
+      .then((resUser) => {
+          console.log('user in outside scope');
+          console.log(resUser);
+
+          if (!resUser) {
+            console.log("user doesn't exist, creating");
+            const user = new User({
+              key: req.body.key,
+              name: req.body.name,
+              avatar: req.body.avatar
+            });
+            user.save((err) => {
+              console.log(err);
+            });
+          } else {
+            console.log("user exists");
+          }
+        });
+
 };
+
+// export const create = async (req, res, next) => {
+//   console.log(req);
+//  Item.find({}).lean().exec((err, item) => res.json(
+//   { key: req.body.key }
+//  ));
+// };
 
 
 
