@@ -4,7 +4,6 @@ import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 // Import Facebook and Google OAuth apps configs
 import { facebook, google } from './config';
-//MongoDB
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
@@ -12,7 +11,8 @@ import router from './router';
 // Initialize http server
 const app = express();
 
-//socket.io
+//Socket.io
+
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
@@ -24,8 +24,33 @@ server.listen(port, () => {
   console.log(`Listening at http://${address}:${port}`);
 });
 
+io.on('connection', function(socket) {
+  // console.log('Client connected on', socket.id);
+  console.log('Connected!');
+  socket.on('Client connected!', () => {
+    console.log('Socket connection working');
+  });
+  socket.on('disconnect', () => console.log('Disconnected'));
+  socket.emit('connected');
+});
+
+//MongoDB
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/items');
+// Logger that outputs all requests into the console
+app.use(morgan('combined'));
+
+// Use v1 as prefix for all API endpoints
+app.use('/v1', router);
+
+// Handle / route
+app.get('/', (req, res) =>
+res.send('Hello World!')
+)
+
+
+//OAuth
 
 // Transform Facebook profile because Facebook and Google profile objects look different
 // and we want to transform them into user objects that have the same set of attributes
@@ -60,18 +85,6 @@ passport.serializeUser((user, done) => done(null, user));
 
 // Deserialize user from the sessions
 passport.deserializeUser((user, done) => done(null, user));
-
-
-// Logger that outputs all requests into the console
-app.use(morgan('combined'));
-
-// Use v1 as prefix for all API endpoints
-app.use('/v1', router);
-
-// Handle / route
-app.get('/', (req, res) =>
-  res.send('Hello World!')
-)
 
 // Initialize Passport
 app.use(passport.initialize());
