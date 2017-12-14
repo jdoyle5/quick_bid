@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 // Import index action from items controller
-// import { index, } from './controllers/items';
 import { create } from './controllers/users';
+import { index, auctionItem } from './controllers/items';
 
 // Initialize the router
 const router = Router();
@@ -13,5 +13,7 @@ router.route('/items.json')
 router.route('/users')
   .post(create);
 
+router.route('/auctionItem.json')
+  .get(auctionItem);
 
 export default router;

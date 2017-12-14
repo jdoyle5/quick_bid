@@ -35,6 +35,10 @@ export default class Auth extends Component {
     Linking.removeEventListener('url', this.handleOpenURL);
   };
 
+  // added in max
+
+  // added again
+
   handleOpenURL = ({ url }) => {
     // Extract stringified user string out of the URL
     const [, user_string] = url.match(/user=([^#]+)/);

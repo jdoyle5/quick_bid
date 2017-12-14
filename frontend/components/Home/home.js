@@ -26,9 +26,15 @@ const styles = StyleSheet.create({
   },
 });
 
+import ioClient from 'socket.io-client';
 
 
 export default class Home extends Component {
+
+  constructor(props) {
+    super(props);
+
+  }
 
   componentDidMount() {
     this.props.requestItems();

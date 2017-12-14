@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import { TabNavigator } from "react-navigation";
 import HomeContainer from "./components/Home/home_container";
+import BidWindow from "./components/Bidding/bid_window";
 
 
 import configureStore from './store/store';
@@ -34,7 +35,8 @@ const Home = props => {
 
 const Root = TabNavigator({
   Home: { screen: Home },
-  Login: { screen: Authentication, title: "Login" }
+  Login: { screen: Authentication, title: "Login" },
+  BidWindow: {screen: BidWindow, title: "Live"}
 });
 
 export default Root;
