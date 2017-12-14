@@ -12,8 +12,8 @@ import User from '../models/user';
 
 export const create = (req, res, next) => {
   // var user = User.findOne({key: req.body.key});
-  console.log("incoming create user action!!!!");
-  console.log(req);
+  // console.log("incoming create user action!!!!");
+  // console.log(req);
   User.findOne({key: req.body.key}).lean()
       .exec((err, resUser) => (resUser))
       .then((resUser) => {

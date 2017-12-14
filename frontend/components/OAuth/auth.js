@@ -90,7 +90,6 @@ export default class Auth extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(user);
     return (
       <View style={styles.container}>
         { user
