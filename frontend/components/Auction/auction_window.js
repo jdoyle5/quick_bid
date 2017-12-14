@@ -34,10 +34,15 @@ export default class AuctionWindow extends Component {
 
   }
 
-  render() {
-    return (
-      <View>
 
+  render() {
+    if (!this.props.item.title) {
+      return null;
+    }
+    return (
+      <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
+        <Text>Highest Bid</Text>
+        <Text>{this.props.item.highest_bid}</Text>
       </View>
     );
   }

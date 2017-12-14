@@ -11,7 +11,7 @@ var itemSchema = new Schema({
   msrp: Number,
   bid_time: Date,
   highest_bid: Number,
-  highest_bidder: Number
+  highest_bidder_key: String
 });
 
 // Export Mongoose model
