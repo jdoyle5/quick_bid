@@ -49,7 +49,18 @@ export default class Auth extends Component {
       user
     });
 
+    // APIUtil.postUser(user);
+    // console.log("This is the user in auth.js");
+    // console.log(user);
+    // console.log(this.props);
+    // let crUr = this.props.createUser;
+    // this.props.createUser(user);
+
     this.props.receiveCurrentUser(user);
+
+    postUser = this.props.postUser;
+
+    this.props.postUser(user);
 
     if (Platform.OS === 'ios') {
       SafariView.dismiss();

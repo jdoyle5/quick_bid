@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import {receiveCurrentUser} from '../../actions/session_actions';
+import { createUser, receiveCurrentUser } from '../../actions/session_actions';
+import { postUser } from '../../util/sessions_util';
 import Auth from './auth';
 
 const mapStateToProps = (state) => ({
@@ -8,7 +9,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  receiveCurrentUser: (currentUser) => dispatch(receiveCurrentUser(currentUser))
+  receiveCurrentUser: (currentUser) => dispatch(receiveCurrentUser(currentUser)),
+  postUser: postUser
+  // createUser: (currentUser) => dispatch(createUser(currentUser))
 });
 
 export default connect(

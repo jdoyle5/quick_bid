@@ -1,19 +1,51 @@
 import Item from '../models/item';
 import mongoose, { Schema } from 'mongoose';
+import User from '../models/user';
 // import moment from 'moment';
 
-export const index = (req, res, next) => {
-  Item.find().lean().exec((err, items) => res.json(
-    { items }
-  ));
-};
+// export const create = (req, res, next) => {
+//   mongoose.model('user').create({
+//     id: user.id,
+//     name: user.name
+//   });
+// };
 
 export const create = (req, res, next) => {
-  mongoose.model('user').create({
-    id: currentUser.id,
-    name: currentUser.name
-  });
+  // var user = User.findOne({key: req.body.key});
+  console.log("incoming create user action!!!!");
+  console.log(req);
+  User.findOne({key: req.body.key}).lean()
+      .exec((err, resUser) => (resUser))
+      .then((resUser) => {
+          if (!resUser) {
+            console.log("user doesn't exist, creating");
+            const user = new User({
+              key: req.body.key,
+              name: req.body.name,
+              avatar: req.body.avatar
+            });
+            resUser = user.save((err, savedUser) => {
+              console.log(err);
+              // return res.json(savedUser);
+            });
+          } else {
+            console.log("user exists");
+            // return res.json(resUser);
+          }
+          return res.json({
+            worked: "ok"
+          });
+        }
+      );
+
 };
+
+// export const create = async (req, res, next) => {
+//   console.log(req);
+//  Item.find({}).lean().exec((err, item) => res.json(
+//   { key: req.body.key }
+//  ));
+// };
 
 
 
