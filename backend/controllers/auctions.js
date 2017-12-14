@@ -7,18 +7,18 @@ mongoose.connect('mongodb://localhost/items', {
 });
 
 
-export const increaseBid = (userKey, bidAmount) => {
-  console.log("executed");
-  Item.findOneAndUpdate({bid_time: bidTime()}, {
-    "$set": {
-      "highest_bid": bidAmount,
-      "highest_bidder_key": userKey
-    }
-  }).exec((err) => {
-    if (err) {
-      console.log(err);
-    }
-  });
+// export const increaseBid = (userKey, bidAmount) => {
+//   console.log("executed");
+//   Item.findOneAndUpdate({bid_time: bidTime()}, {
+//     "$set": {
+//       "highest_bid": bidAmount,
+//       "highest_bidder_key": userKey
+//     }
+//   }).exec((err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//   });
 
   // Item.findOne({
   //   bid_time: bidTime()
@@ -32,7 +32,7 @@ export const increaseBid = (userKey, bidAmount) => {
   //   }
   // });
 
-};
+// };
 
-increaseBid("111079933685151082118", 400);
-console.log("reached");
+// increaseBid("111079933685151082118", 400);
+// console.log("reached");

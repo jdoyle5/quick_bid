@@ -7,7 +7,7 @@ import { facebook, google } from './config';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
-import { _getAuctionItem } from './socket';
+import { _getAuctionItem, increaseBid } from './socket';
 
 import {bidTime} from './util/datetime';
 import { auctionItem } from './controllers/items';
@@ -39,6 +39,12 @@ io.on('connection', function(socket) {
   socket.on('Client connected!', () => {
     console.log('Socket connection working on', socket.id);
     currentAuctionItem = _getAuctionItem(socket);
+  });
+  socket.on('Increase bid', (currentUserKey, bidAmount) => {
+    console.log(currentUserKey);
+    console.log(bidAmount);
+    increaseBid(currentUserKey, bidAmount, socket);
+    // currentAuctionItem = _getAuctionItem(socket);
   });
   socket.on('disconnect', () => console.log('Disconnected'));
   socket.emit('connected');

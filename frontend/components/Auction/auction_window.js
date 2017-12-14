@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 import ioClient from 'socket.io-client';
 
@@ -12,7 +13,7 @@ export default class AuctionWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // current_bid: this.props.current_bid,
+      // current_bid: this.props.item.highest_bid,
     };
 
     this.onReceivedItem = this.onReceivedItem.bind(this);
@@ -20,6 +21,7 @@ export default class AuctionWindow extends Component {
     this.socket.emit('Client connected!');
     this.socket.on('auction item', this.onReceivedItem);
 
+    this.increaseBid = this.increaseBid.bind(this);
   }
 
 
@@ -30,8 +32,10 @@ export default class AuctionWindow extends Component {
     // this.setState({current_item: item});
   }
 
-  onBid(bid) {
-
+  increaseBid(bid) {
+    const currentUserKey = this.props.currentUser.key;
+    const bidAmount = 200;
+    this.socket.emit('Increase bid', currentUserKey, bidAmount);
   }
 
 
@@ -43,6 +47,11 @@ export default class AuctionWindow extends Component {
       <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
         <Text>Highest Bid</Text>
         <Text>{this.props.item.highest_bid}</Text>
+        <TouchableOpacity onPress={this.increaseBid}>
+          <Text>
+            Increase Bid Now!!!
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

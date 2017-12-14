@@ -4,7 +4,8 @@ import AuctionWindow from './auction_window';
 import { receiveAuctionItem } from '../../actions/auction_actions';
 
 const mapStateToProps = (state) => ({
-  item: state.entities.auction
+  item: state.entities.auction,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
