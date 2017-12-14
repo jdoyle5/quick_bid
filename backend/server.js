@@ -8,6 +8,10 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
 
+import {bidTime} from './util/datetime';
+import { auctionItem } from './controllers/items';
+import Item from './models/item';
+
 // Initialize http server
 const app = express();
 
@@ -24,15 +28,29 @@ server.listen(port, () => {
   console.log(`Listening at http://${address}:${port}`);
 });
 
+var clients = {};
+
 io.on('connection', function(socket) {
   // console.log('Client connected on', socket.id);
   console.log('Connected!');
+  clients[socket.id] = socket;
   socket.on('Client connected!', () => {
-    console.log('Socket connection working');
+    console.log('Socket connection working on', socket.id);
+    _getAuctionItem(socket);
   });
   socket.on('disconnect', () => console.log('Disconnected'));
   socket.emit('connected');
 });
+
+const _getAuctionItem = (socket) => {
+  // console.log("auction item here");
+  var item = Item.findOne({bid_time: bidTime()}).exec((err, item) => {
+    if (item) {
+      socket.emit('auction item', item);
+      console.log(item);
+    };
+  })
+};
 
 //MongoDB
 
