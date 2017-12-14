@@ -7,17 +7,17 @@ import {
 } from 'react-native';
 import { StackNavigator } from "react-navigation";
 import AuthContainer from './OAuth/auth_container';
+import HomeContainer from './Home/home_container';
+import AuctionWindowContainer from './Auction/auction_window_container';
 
 const App = (props) => {
-  const { navigate } = props.navigation;
+  // const { navigate } = props.navigation;
 
   return (
     <View style={styles.container}>
+      < AuctionWindowContainer />
       < AuthContainer />
-      <Button
-           onPress={() => navigate('SecondScreen')}
-           title="Go to Second Screen"
-         />
+      < HomeContainer />
     </View>
   );
 };

@@ -16,7 +16,7 @@ const hour = 3600000;
 import {bidTime} from './util/datetime';
 
 
-var currentMinute = 0;
+var currentMinute = -1;
 const nextMinute = () => {
   currentMinute = currentMinute + 1;
   return currentMinute * minute;
