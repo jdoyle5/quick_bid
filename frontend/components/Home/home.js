@@ -34,10 +34,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.socket = ioClient('http://localhost:3000');
-    this.socket.emit('Client connected!');
-
-
   }
 
   componentDidMount() {
