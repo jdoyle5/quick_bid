@@ -44,7 +44,6 @@ io.on('connection', function(socket) {
 });
 
 const _getAuctionItem = (socket) => {
-  // console.log("auction item here");
   var item = Item.findOne({bid_time: bidTime()}).exec((err, item) => {
     if (item) {
       socket.emit('auction item', item);

@@ -8,12 +8,11 @@ import {
 import ioClient from 'socket.io-client';
 
 
-export default class BidWindow extends Component {
+export default class AuctionWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current_bid: this.props.current_bid,
-      current_item: this.props.current_item
+      // current_bid: this.props.current_bid,
     };
 
     this.onReceivedItem = this.onReceivedItem.bind(this);
@@ -27,6 +26,8 @@ export default class BidWindow extends Component {
   onReceivedItem(item) {
     console.log("current auction item");
     console.log(item);
+    this.props.receiveAuctionItem(item);
+    // this.setState({current_item: item});
   }
 
   onBid(bid) {
@@ -42,6 +43,6 @@ export default class BidWindow extends Component {
   }
 
 }
-BidWindow.navigationOptions = {
-  title: 'BidWindow',
+AuctionWindow.navigationOptions = {
+  title: 'Live',
 };
