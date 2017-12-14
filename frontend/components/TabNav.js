@@ -30,11 +30,11 @@ const Home = props => {
       <HomeContainer navigation={props.navigation} />
   );
 };
-const Authentication = props => {
-  return (
-      <AuthContainer navigation={props.navigation} />
-  );
-};
+// const Authentication = props => {
+//   return (
+//       <AuthContainer navigation={props.navigation} />
+//   );
+// };
 const AuctionWindow = props => {
   return (
       <AuctionWindowContainer navigation={props.navigation} />
@@ -51,15 +51,15 @@ const AuctionWindow = props => {
 // });
 
 
-const App = StackNavigator ({
+const TabNav = TabNavigator ({
   // if (store.getState().session.currentUser) {
   //   return TabNav;
   // } else {
   //   return Login;
   // }
-  Login: { screen: Authentication, title: "Login" },
-  // Home: { screen: Home },
-  // AuctionWindow: {screen: AuctionWindow, title: "Live"}
+  // Login: { screen: Authentication, title: "Login" },
+  Home: { screen: Home },
+  AuctionWindow: {screen: AuctionWindow, title: "Live"}
 });
 
 
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default TabNav;
