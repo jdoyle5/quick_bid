@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 // Import index action from items controller
-import { index } from './controllers/items';
+// import { index, } from './controllers/items';
 import { create } from './controllers/users';
 
 // Initialize the router
