@@ -12,12 +12,11 @@ import User from '../models/user';
 
 export const create = (req, res, next) => {
   // var user = User.findOne({key: req.body.key});
+  console.log("incoming create user action!!!!");
+  console.log(req);
   User.findOne({key: req.body.key}).lean()
       .exec((err, resUser) => (resUser))
       .then((resUser) => {
-          console.log('user in outside scope');
-          console.log(resUser);
-
           if (!resUser) {
             console.log("user doesn't exist, creating");
             const user = new User({
@@ -25,13 +24,19 @@ export const create = (req, res, next) => {
               name: req.body.name,
               avatar: req.body.avatar
             });
-            user.save((err) => {
+            resUser = user.save((err, savedUser) => {
               console.log(err);
+              // return res.json(savedUser);
             });
           } else {
             console.log("user exists");
+            // return res.json(resUser);
           }
-        });
+          return res.json({
+            worked: "ok"
+          });
+        }
+      );
 
 };
 

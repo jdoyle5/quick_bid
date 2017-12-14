@@ -6,6 +6,9 @@ export const receiveCurrentUser = currentUser => ({
   currentUser
 });
 
-export const createUser = (user) => dispatch => (
-  APIUtil.postUser(user).then(userObj => dispatch(receiveCurrentUser(userObj)))
-);
+// export const createUser = (user) => dispatch => (
+//   APIUtil.postUser(user).then(userObj => {
+//     debugger;
+//     return dispatch(receiveCurrentUser(userObj));
+//   })
+// );

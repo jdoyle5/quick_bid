@@ -38,7 +38,9 @@ io.on('connection', function(socket) {
 //MongoDB
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/items');
+mongoose.connect('mongodb://localhost/items', {
+  useMongoClient: true
+});
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
 
