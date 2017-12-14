@@ -14,7 +14,7 @@ export const increaseBid = (userKey, bidAmount) => {
       "highest_bid": bidAmount,
       "highest_bidder_key": userKey
     }
-  }).exec((err, item) => {
+  }).exec((err) => {
     if (err) {
       console.log(err);
     }
@@ -34,5 +34,5 @@ export const increaseBid = (userKey, bidAmount) => {
 
 };
 
-increaseBid("111079933685151082118", 200);
+increaseBid("111079933685151082118", 400);
 console.log("reached");

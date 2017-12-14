@@ -7,50 +7,43 @@ import { facebook, google } from './config';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
+import { _getAuctionItem } from './socket';
 
 import {bidTime} from './util/datetime';
 import { auctionItem } from './controllers/items';
 import Item from './models/item';
 
 // Initialize http server
-const app = express();
+export const app = express();
 
 //Socket.io
-
+//
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+export var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 
 // Launch the server on the port 3000
 
-const port = process.env.PORT || 3000;
+export const port = process.env.PORT || 3000;
 server.listen(port, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
 });
-
+//
 var clients = {};
-
+var currentAuctionItem;
+//
 io.on('connection', function(socket) {
-  // console.log('Client connected on', socket.id);
   console.log('Connected!');
   clients[socket.id] = socket;
   socket.on('Client connected!', () => {
     console.log('Socket connection working on', socket.id);
-    _getAuctionItem(socket);
+    currentAuctionItem = _getAuctionItem(socket);
   });
   socket.on('disconnect', () => console.log('Disconnected'));
   socket.emit('connected');
 });
 
-const _getAuctionItem = (socket) => {
-  var item = Item.findOne({bid_time: bidTime()}).exec((err, item) => {
-    if (item) {
-      socket.emit('auction item', item);
-      console.log(item);
-    };
-  })
-};
 
 //MongoDB
 
