@@ -10,7 +10,7 @@ export default class HomeIndexItem extends Component {
     return (
         <View style={styles.content}>
           <Text style={styles.header}>{item.title}</Text>
-        <Image source={image} style={{width: '80%', height: 300, marginBottom: 40}}/>
+        <Image source={image} style={{width: '55%', height: 200, marginBottom: 40}}/>
         </View>
     );
   }
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 20,
-    backgroundColor: '#00FFFF'
+    backgroundColor: 'black',
   },
   avatar: {
     margin: 20,
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color: 'white'
   },
   text: {
     textAlign: 'center',
