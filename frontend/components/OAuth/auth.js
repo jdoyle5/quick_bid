@@ -9,7 +9,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
+import HomeContainer from '../Home/home_container';
+import TabNav from '../TabNav';
 
+// const Home = props => {
+//   return (
+//       <HomeContainer navigation={props.navigation} />
+//   );
+// };
 
 
 export default class Auth extends Component {
@@ -38,6 +45,12 @@ export default class Auth extends Component {
   // added in max
 
   // added again
+  _navigateTo = (routeName: string) => {
+    const actionToDispatch = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName })]
+    })
+  }
 
   handleOpenURL = ({ url }) => {
     // Extract stringified user string out of the URL
@@ -94,15 +107,17 @@ export default class Auth extends Component {
       <View style={styles.container}>
         { user
           ? // Show user info if already logged in
-            <View style={styles.content}>
-              <Text style={styles.header}>
+            <View style={styles.container}>
+              {/* <Text style={styles.header}>
                 Welcome {user.name}!
               </Text>
               <View style={styles.avatar}>
                 <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
-              </View>
+              </View> */}
+              <TabNav/>
             </View>
           : // Show Please log in message if not
+          <View style={styles.container}>
             <View style={styles.content}>
               <Text style={styles.header}>
                 Welcome Stranger!
@@ -115,26 +130,27 @@ export default class Auth extends Component {
                 to the awesomness
               </Text>
             </View>
+            <View style={styles.buttons}>
+              <Icon.Button
+                name="facebook"
+                backgroundColor="#3b5998"
+                onPress={this.loginWithFacebook}
+                {...iconStyles}
+                >
+                  Login with Facebook
+                </Icon.Button>
+                <Icon.Button
+                  name="google"
+                  backgroundColor="#DD4B39"
+                  onPress={this.loginWithGoogle}
+                  {...iconStyles}
+                  >
+                    Or with Google
+                </Icon.Button>
+              </View>
+            </View>
         }
         {/* Login buttons */}
-        <View style={styles.buttons}>
-          <Icon.Button
-            name="facebook"
-            backgroundColor="#3b5998"
-            onPress={this.loginWithFacebook}
-            {...iconStyles}
-          >
-            Login with Facebook
-          </Icon.Button>
-          <Icon.Button
-            name="google"
-            backgroundColor="#DD4B39"
-            onPress={this.loginWithGoogle}
-            {...iconStyles}
-          >
-            Or with Google
-          </Icon.Button>
-        </View>
       </View>
     );
   }
