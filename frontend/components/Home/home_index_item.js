@@ -9,8 +9,13 @@ export default class HomeIndexItem extends Component {
 
     this.state = {
       title: props.item.title,
-      expanded: true,
-      animation: new Animated.Value()
+      expanded: false,
+      animation: new Animated.Value(55),
+    };
+
+    this.icons = {
+      'up'    : require('../../images/arrow_up.png'),
+      'down'  : require('../../images/arrow_down.png')
     };
   }
 
@@ -44,21 +49,29 @@ export default class HomeIndexItem extends Component {
     const { item } = this.props;
     let image = {uri: item.img_url};
 
+    let icon = this.icons['down'];
+
+    if(this.state.expanded){
+        icon = this.icons['up'];   //Step 4
+    }
+
     return (
-      <Animated.View style={[styles.container,{height: this.state.animation}]}>
+      <Animated.View style={[styles.container, {height: this.state.animation}]}>
         <View style={styles.container} >
           <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
-            <Text style={styles.title}>{this.state.title}</Text>
-            <TouchableHighlight
-              style={styles.button}
-              onPress={this.toggle.bind(this)}
-              underlayColor="#f1f1f1">
-              <Image source={image} style={{width: '55%', height: 200, marginBottom: 40}}/>
-            </TouchableHighlight>
+            <View style={styles.center}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={this.toggle.bind(this)}
+                underlayColor="#f1f1f1">
+                <Text style={styles.title}>{this.state.title}</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-        <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
-          {item.children}
-        </View>
+          <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
+            <Text style={{color: 'black'}}> {item.description} </Text>
+            <Image source={image} style={{width:'100%', height: 350, marginBottom: 40}} ></Image>
+          </View>
         </View>
       </Animated.View>
     );
@@ -108,18 +121,21 @@ export default class HomeIndexItem extends Component {
 
 var styles = StyleSheet.create({
     container   : {
-        backgroundColor: '#fff',
+        backgroundColor: 'orange',
         margin:10,
-        overflow:'hidden'
+        overflow:'hidden',
+        borderRadius: 10
     },
     titleContainer : {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: 55
     },
     title       : {
         flex    : 1,
         padding : 10,
-        color   :'#2a2f43',
-        fontWeight:'bold'
+        color   :'black',
+        fontWeight:'bold',
+        height  : 30
     },
     button      : {
 
@@ -130,7 +146,11 @@ var styles = StyleSheet.create({
     },
     body        : {
         padding     : 10,
-        paddingTop  : 0
+        paddingTop  : 0,
+        alignItems: 'center'
+    },
+    center : {
+      alignItems: 'center'
     }
 });
 

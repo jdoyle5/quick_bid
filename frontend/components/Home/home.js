@@ -12,15 +12,24 @@ import receiveItems from '../../actions/item_actions';
 import HomeIndexItem from './home_index_item';
 
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
+//   container: {
+//     backgroundColor: 'gray',
+//   },
+//   welcome: {
+//     fontSize: 20,
+//     textAlign: 'center',
+//     margin: 10,
+//   },
+// });
+
+var styles = StyleSheet.create({
   container: {
-    backgroundColor: 'gray',
+    flex            : 1,
+    backgroundColor : 'white',
+    paddingTop      : 30
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+
 });
 
 import ioClient from 'socket.io-client';
