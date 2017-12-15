@@ -6,6 +6,7 @@ var itemSchema = new Schema({
     type: String,
     unique: true,
   },
+  description: String,
   img_url: String,
   categoryId: Number,
   msrp: Number,

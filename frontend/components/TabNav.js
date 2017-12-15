@@ -59,7 +59,7 @@ const TabNav = TabNavigator ({
   // }
   // Login: { screen: Authentication, title: "Login" },
   Home: { screen: Home },
-  AuctionWindow: {screen: AuctionWindow, title: "Live"}
+  Live: {screen: AuctionWindow, title: "Live"}
 });
 
 
