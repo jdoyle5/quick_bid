@@ -48,12 +48,21 @@ export default class AuctionWindow extends Component {
   // }
 
   nextBid() {
-    return (Math.round((this.props.item.msrp * 0.1) / 10) * 10 + this.props.item.highest_bid);
+    if ((Math.round((this.props.item.msrp * 0.1) / 10) * 10) <= 5) {
+      return (5 + this.props.item.highest_bid);
+    } else {
+      return (Math.round((this.props.item.msrp * 0.1) / 10) * 10 + this.props.item.highest_bid);
+    }
   }
 
   render() {
     if (!this.props.item.title) {
-      return null;
+      return (
+        <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
+          <Text>Our products were so popular, they've sold out!</Text>
+          <Text>Please check back soon. We are working hard to get more items to you!</Text>
+        </View>
+      );
     }
     return (
       <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
@@ -62,7 +71,7 @@ export default class AuctionWindow extends Component {
         <Text>{this.props.item.title}</Text>
         <TouchableOpacity onPress={this.increaseBid}>
           <Text>
-            Increase Bid Now!!!
+            Increase Your Bid
             {this.nextBid()}
           </Text>
         </TouchableOpacity>
