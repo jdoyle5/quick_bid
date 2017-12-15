@@ -14,10 +14,7 @@ import HomeIndexItem from './home_index_item';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'gray',
   },
   welcome: {
     fontSize: 20,
@@ -51,7 +48,7 @@ export default class Home extends Component {
     console.log("about to render");
 
     return (
-      <ScrollView >
+      <ScrollView style={styles.container}>
           {items.map((item, i) => (
             <HomeIndexItem key={i} item={item} />
           ))}
