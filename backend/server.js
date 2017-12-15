@@ -12,6 +12,7 @@ import { _getAuctionItem, increaseBid } from './socket';
 import {bidTime} from './util/datetime';
 import { auctionItem } from './controllers/items';
 import Item from './models/item';
+import { seedData } from './populate';
 
 // Initialize http server
 export const app = express();
@@ -52,7 +53,7 @@ io.on('connection', function(socket) {
     return 60000 - (new Date().getTime() % 60000);
   }, timerFunction = function() {
     _getAuctionItem(socket);
-    console.log(new Date());
+    // console.log(new Date());
     setTimeout(timerFunction, nextTick());
   };
 
@@ -66,6 +67,22 @@ io.on('connection', function(socket) {
 mongoose.connect('mongodb://localhost/items', {
   useMongoClient: true
 });
+
+//add Data setInterval
+// seedData();
+
+const dataInterval = 1.2 * Math.pow(10, 6);
+setInterval(seedData, 5000);
+
+
+// var nextData = function() {
+//   return dataInterval - (new Date().getTime() % dataInterval);
+// }, addData = function() {
+//
+//
+// }}, dataInterval);
+// };
+
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
 
