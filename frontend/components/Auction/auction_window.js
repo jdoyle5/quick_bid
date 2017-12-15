@@ -22,7 +22,8 @@ export default class AuctionWindow extends Component {
     this.socket.on('auction item', this.onReceivedItem);
 
     this.increaseBid = this.increaseBid.bind(this);
-    this.bid = 100;
+    // this.bid = 100;
+    this.nextBid = this.nextBid.bind(this);
   }
 
 
@@ -38,12 +39,16 @@ export default class AuctionWindow extends Component {
     const auctionItemId = this.props.item._id;
     // console.log(auctionItemId);
     // const bidAmount = this.incrementBid();
-    this.socket.emit('Increase bid', currentUserKey, this.incrementBid(), auctionItemId);
+    this.socket.emit('Increase bid', currentUserKey, this.nextBid(), auctionItemId);
   }
 
-  incrementBid() {
-    this.bid += 100;
-    return this.bid;
+  // incrementBid() {
+  //   this.bid += 100;
+  //   return this.bid;
+  // }
+
+  nextBid() {
+    return (Math.round(this.props.item.msrp * 0.1) + this.props.item.highest_bid);
   }
 
   render() {
@@ -58,6 +63,7 @@ export default class AuctionWindow extends Component {
         <TouchableOpacity onPress={this.increaseBid}>
           <Text>
             Increase Bid Now!!!
+            {this.nextBid()}
           </Text>
         </TouchableOpacity>
       </View>
