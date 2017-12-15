@@ -2,10 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 // Define item schema
 var itemSchema = new Schema({
-  title: {
-    type: String,
-    unique: true,
-  },
+  title: String,
   description: String,
   img_url: String,
   categoryId: Number,

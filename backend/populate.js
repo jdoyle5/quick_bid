@@ -26,6 +26,10 @@ const auctionTime = () => {
   return new Date(bidTime().getTime() + nextMinute());
 };
 
+const addData = () => {
+
+};
+
 const items = [
   {
     title: "Refurbished Apple iPhone 5S",

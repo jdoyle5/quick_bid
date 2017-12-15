@@ -57,7 +57,12 @@ export default class AuctionWindow extends Component {
 
   render() {
     if (!this.props.item.title) {
-      return null;
+      return (
+        <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
+          <Text>Our products were so popular, they've sold out!</Text>
+          <Text>Please check back soon. We are working hard to get more items to you!</Text>
+        </View>
+      );
     }
     return (
       <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
@@ -66,7 +71,7 @@ export default class AuctionWindow extends Component {
         <Text>{this.props.item.title}</Text>
         <TouchableOpacity onPress={this.increaseBid}>
           <Text>
-            Increase Bid Now!!!
+            Increase Your Bid
             {this.nextBid()}
           </Text>
         </TouchableOpacity>
