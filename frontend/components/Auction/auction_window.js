@@ -48,7 +48,7 @@ export default class AuctionWindow extends Component {
   // }
 
   nextBid() {
-    return (Math.round(this.props.item.msrp * 0.1) + this.props.item.highest_bid);
+    return (Math.round((this.props.item.msrp * 0.1) / 10) * 10 + this.props.item.highest_bid);
   }
 
   render() {
