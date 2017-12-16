@@ -120,15 +120,14 @@ export default class Auth extends Component {
           <View style={styles.container}>
             <View style={styles.content}>
               <Text style={styles.header}>
-                Welcome Stranger!
+                QuickBid
+              </Text>
+              <Text style={styles.text}>
+                A new auction bargain every minute! {'\n'}
               </Text>
               <View style={styles.avatar}>
-                <Icon name="user-circle" size={100} color="rgba(0,0,0,.09)" />
+                <Icon name="hourglass-start" size={100} color="#7ea4b3" />
               </View>
-              <Text style={styles.text}>
-                Please log in to continue {'\n'}
-                to the awesomness
-              </Text>
             </View>
             <View style={styles.buttons}>
               <Icon.Button
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   header: {
-    fontSize: 20,
+    fontSize: 70,
     textAlign: 'center',
     margin: 10,
   },
@@ -188,6 +187,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333',
     marginBottom: 5,
+    fontSize: 20
   },
   buttons: {
     justifyContent: 'space-between',
