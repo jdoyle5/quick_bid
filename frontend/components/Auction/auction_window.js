@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import ioClient from 'socket.io-client';
+import Timer from './timer';
 
 
 export default class AuctionWindow extends Component {
@@ -75,11 +76,12 @@ export default class AuctionWindow extends Component {
             {this.nextBid()}
           </Text>
         </TouchableOpacity>
+        <Timer/>
       </View>
     );
   }
 
 }
-AuctionWindow.navigationOptions = {
-  title: 'Live',
-};
+// AuctionWindow.navigationOptions = {
+//
+// };

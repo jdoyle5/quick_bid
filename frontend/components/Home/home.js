@@ -26,9 +26,17 @@ import HomeIndexItem from './home_index_item';
 var styles = StyleSheet.create({
   container: {
     flex            : 1,
-    backgroundColor : 'white',
+    backgroundColor : '#7ea4b3',
     paddingTop      : 30
   },
+  tabicon: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    height: 26,
+    width: 26
+  }
 
 });
 
@@ -41,6 +49,15 @@ export default class Home extends Component {
     super(props);
   }
 
+//   navigationOptions = {
+//     tabBarLabel: 'Index',
+//     tabBarIcon: () => (
+//       <Image
+//         source={require('../../images/arrow_up.png')}
+//         style={[styles.tabicon, {tintColor: 'black'}]}
+//       />
+//   )
+// };
 
   componentDidMount() {
     this.props.requestItems();
@@ -65,10 +82,6 @@ export default class Home extends Component {
     );
   }
 }
-
-Home.navigationOptions = {
-  title: 'Home',
-};
 
 
 

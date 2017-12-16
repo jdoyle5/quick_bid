@@ -14,42 +14,17 @@ import configureStore from '../store/store';
 
 const store = configureStore({});
 
-// const App = (props) => {
-//   // const { navigate } = props.navigation;
-//
-//   return (
-//     <View style={styles.container}>
-//       < AuctionWindowContainer />
-//       < AuthContainer />
-//       < HomeContainer />
-//     </View>
-//   );
-// };
 const Home = props => {
   return (
       <HomeContainer navigation={props.navigation} />
   );
 };
-// const Authentication = props => {
-//   return (
-//       <AuthContainer navigation={props.navigation} />
-//   );
-// };
+
 const AuctionWindow = props => {
   return (
       <AuctionWindowContainer navigation={props.navigation} />
   );
 };
-
-// const TabNav = TabNavigator({
-//   Home: { screen: Home },
-//   AuctionWindow: {screen: AuctionWindow, title: "Live"}
-// });
-//
-// const Login = StackNavigator({
-//   Login: { screen: Authentication, title: "Login" },
-// });
-
 
 const TabNav = TabNavigator ({
   // if (store.getState().session.currentUser) {
@@ -59,7 +34,7 @@ const TabNav = TabNavigator ({
   // }
   // Login: { screen: Authentication, title: "Login" },
   Home: { screen: Home },
-  Live: {screen: AuctionWindow, title: "Live"}
+  Live: {screen: AuctionWindow, title: "Live"},
 });
 
 
@@ -67,6 +42,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  tabicon: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   }
 });
 

@@ -69,8 +69,8 @@ export default class HomeIndexItem extends Component {
             </View>
           </View>
           <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
-            <Text style={{color: 'black'}}> {item.description} </Text>
-            <Image source={image} style={{width:'100%', height: 350, marginBottom: 40}} ></Image>
+            <Text style={{color: '#3d5c68'}}> {item.description} </Text>
+          <Image source={image} style={{width:'100%', height: 350, marginBottom: 40, backgroundColor: 'orange'}} ></Image>
           </View>
         </View>
       </Animated.View>
@@ -121,10 +121,10 @@ export default class HomeIndexItem extends Component {
 
 var styles = StyleSheet.create({
     container   : {
-        backgroundColor: 'orange',
+        backgroundColor: 'white',
         margin:10,
         overflow:'hidden',
-        borderRadius: 10
+        borderRadius: 10,
     },
     titleContainer : {
         flexDirection: 'column',
@@ -133,7 +133,7 @@ var styles = StyleSheet.create({
     title       : {
         flex    : 1,
         padding : 10,
-        color   :'black',
+        color   :'#3d5c68',
         fontWeight:'bold',
         height  : 30
     },
