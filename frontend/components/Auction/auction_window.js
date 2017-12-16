@@ -56,30 +56,60 @@ export default class AuctionWindow extends Component {
     let image = {uri: item.img_url};
     if (!this.props.item.title) {
       return (
-        <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
+        <View style={styles.container}>
           <Text>Our products were so popular, they've sold out!</Text>
           <Text>Please check back soon. We are working hard to get more items to you!</Text>
         </View>
       );
     }
     return (
-      <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
-        <Text>Highest Bid</Text>
-        <Text>{item.highest_bid}</Text>
-        <Text>{item.title}</Text>
-        <Image source={image} style={{width: '100%', height: 200, marginBottom: 40}}/>
+      <View style={styles.container}>
+        <Text style={styles.titleContainer}>{item.title}</Text>
+        <Timer/>
+      <Text style={styles.bidText}>Highest Bid: ${item.highest_bid}</Text>
+        <Image source={image} style={{width: '90%', height: 300, marginBottom: 40, borderRadius: 10}}/>
         <TouchableOpacity onPress={this.increaseBid}>
-          <Text>
-            Increase Your Bid
-            {this.nextBid()}
+          <Text style={styles.bidButton}>
+            ${this.nextBid()}
           </Text>
         </TouchableOpacity>
-        <Timer/>
       </View>
     );
   }
 
 }
-// AuctionWindow.navigationOptions = {
-//
-// };
+
+var styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: "#7ea4b3"
+    },
+    titleContainer : {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: 'bold',
+      padding: 20
+
+    },
+    currentBid: {
+      flex    : 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    bidText: {
+      color: 'white',
+      fontSize: 15,
+      fontWeight: 'bold',
+      padding: 20
+    },
+    bidButton: {
+      color: 'white',
+      fontSize: 15,
+      fontWeight: 'bold',
+      padding: 20,
+      backgroundColor: 'steelblue',
+      borderRadius: 10
+    }
+});

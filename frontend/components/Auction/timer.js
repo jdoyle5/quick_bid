@@ -38,10 +38,20 @@ export default class Timer extends Component {
   render() {
     console.log(this.state.secondsRemaining);
     return (
-      <View>
-        <Text>{this.state.secondsRemaining}</Text>
+      <View >
+        <Text style={styles.titleContainer}> Time Left: {this.state.secondsRemaining} </Text>
       </View>
     );
   }
 
 }
+
+
+var styles = StyleSheet.create({
+    titleContainer : {
+      color: 'white',
+      fontSize: 15,
+      fontWeight: 'bold',
+      padding: 10,
+    }
+});

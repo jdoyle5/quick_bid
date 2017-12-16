@@ -129,7 +129,7 @@ export const seedData = function() {
     {
       title: "Bose QuietComfort 35",
       description: "Bose QuietComfort 35 wireless headphones II with Google Assistant",
-      img_url: "https://i5.walmartimages.com/asr/f9f5c242-e727-4928-826e-fd716a343284_1.397cbacb01e117753e830bb1cd5eed8f.png?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
+      img_url: "https://i5.walmartimages.com/asr/f9f5c242-e727-4928-826e-fd716a343284_1.397cbacb01e117753e830bb1cd5eed8f.png?odnHeight=450&odnWidth=450&odnBg",
       msrp: 349,
       bid_time: auctionTime(),
       highest_bid: 0,
