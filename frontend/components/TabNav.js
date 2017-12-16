@@ -37,10 +37,10 @@ const TabNav = TabNavigator ({
   Home: {
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Index',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: () => (
         <Image
           source={require('../images/arrow_up.png')}
-          style={[styles.tabicon, {tintColor: 'black'}]}
+          style={[styles.tabicon]}
         />
       )
     }),
