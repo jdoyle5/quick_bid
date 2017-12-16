@@ -3,7 +3,8 @@ import {
   Text,
   View,
   StyleSheet,
-  Button
+  Button,
+  Image
 } from 'react-native';
 import { StackNavigator, TabNavigator } from "react-navigation";
 import AuthContainer from './OAuth/auth_container';
@@ -33,7 +34,18 @@ const TabNav = TabNavigator ({
   //   return Login;
   // }
   // Login: { screen: Authentication, title: "Login" },
-  Home: { screen: Home },
+  Home: {
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: 'Index',
+      tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={require('../images/arrow_up.png')}
+          style={[styles.tabicon, {tintColor: 'black'}]}
+        />
+      )
+    }),
+    screen: Home
+  },
   Live: {screen: AuctionWindow, title: "Live"},
 });
 
@@ -44,10 +56,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   tabicon: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexDirection: 'column',
+    height: 26,
+    width: 26
   }
 });
 

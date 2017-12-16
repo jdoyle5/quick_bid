@@ -49,16 +49,6 @@ export default class Home extends Component {
     super(props);
   }
 
-//   navigationOptions = {
-//     tabBarLabel: 'Index',
-//     tabBarIcon: () => (
-//       <Image
-//         source={require('../../images/arrow_up.png')}
-//         style={[styles.tabicon, {tintColor: 'black'}]}
-//       />
-//   )
-// };
-
   componentDidMount() {
     this.props.requestItems();
   }
