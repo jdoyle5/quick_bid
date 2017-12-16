@@ -4,7 +4,8 @@ import {
   Text,
   View,
   AsyncStorage,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import ioClient from 'socket.io-client';
 
@@ -31,7 +32,6 @@ export default class AuctionWindow extends Component {
     console.log("current auction item");
     console.log(item);
     this.props.receiveAuctionItem(item);
-    // this.setState({current_item: item});
   }
 
   increaseBid(bid) {
@@ -42,11 +42,6 @@ export default class AuctionWindow extends Component {
     this.socket.emit('Increase bid', currentUserKey, this.nextBid(), auctionItemId);
   }
 
-  // incrementBid() {
-  //   this.bid += 100;
-  //   return this.bid;
-  // }
-
   nextBid() {
     if ((Math.round((this.props.item.msrp * 0.1) / 10) * 10) <= 5) {
       return (5 + this.props.item.highest_bid);
@@ -56,6 +51,8 @@ export default class AuctionWindow extends Component {
   }
 
   render() {
+    const { item } = this.props;
+    let image = {uri: item.img_url};
     if (!this.props.item.title) {
       return (
         <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
@@ -67,8 +64,9 @@ export default class AuctionWindow extends Component {
     return (
       <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
         <Text>Highest Bid</Text>
-        <Text>{this.props.item.highest_bid}</Text>
-        <Text>{this.props.item.title}</Text>
+        <Text>{item.highest_bid}</Text>
+        <Text>{item.title}</Text>
+        <Image source={image} style={{width: '100%', height: 200, marginBottom: 40}}/>
         <TouchableOpacity onPress={this.increaseBid}>
           <Text>
             Increase Your Bid
