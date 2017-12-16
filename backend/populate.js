@@ -18,12 +18,12 @@ import {bidTime} from './util/datetime';
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/items', {
-  useMongoClient: true
-});
 
 // Go through each item
 export const seedData = function() {
+  mongoose.connect('mongodb://localhost/items', {
+    useMongoClient: true
+  });
 
   var currentMinute = -1;
   const nextMinute = () => {
@@ -225,8 +225,10 @@ export const seedData = function() {
     // Initialize a model with item data
     const item = new Item(data);
     // and save it into the database
-    item.save();
-    console.log(item);
+    item.save((err) => {
+      // console.log(err);
+    });
+    // console.log(item);
   });
 };
 

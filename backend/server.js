@@ -42,10 +42,7 @@ io.on('connection', function(socket) {
     currentAuctionItem = _getAuctionItem(socket);
   });
   socket.on('Increase bid', (currentUserKey, bidAmount, auctionItemId) => {
-    // console.log(currentUserKey);
-    // console.log(bidAmount);
     increaseBid(currentUserKey, bidAmount, auctionItemId, socket);
-    // currentAuctionItem = _getAuctionItem(socket);
   });
   socket.on('disconnect', () => console.log('Disconnected'));
   socket.emit('connected');
@@ -61,6 +58,7 @@ io.on('connection', function(socket) {
 });
 
 
+
 //MongoDB
 
 // Connect to MongoDB
@@ -69,19 +67,11 @@ mongoose.connect('mongodb://localhost/items', {
 });
 
 //add Data setInterval
-// seedData();
+seedData();
 
-const dataInterval = 1.2 * Math.pow(10, 6);
-setInterval(seedData, 5000);
+const dataInterval = 1.14 * Math.pow(10, 6);
+setInterval(seedData, dataInterval);
 
-
-// var nextData = function() {
-//   return dataInterval - (new Date().getTime() % dataInterval);
-// }, addData = function() {
-//
-//
-// }}, dataInterval);
-// };
 
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
