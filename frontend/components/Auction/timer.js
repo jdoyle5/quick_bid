@@ -7,13 +7,15 @@ import {
   TouchableOpacity
 } from 'react-native';
 import ioClient from 'socket.io-client';
-
+import Modal from 'react-native-modal';
 
 export default class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      secondsRemaining: 59 - (new Date().getSeconds())
+      secondsRemaining: 59 - (new Date().getSeconds()),
+      isModalVisible: false,
+      label: "loser",
     };
     this.countDown = this.countDown.bind(this);
   }
@@ -27,20 +29,50 @@ export default class Timer extends Component {
   }
 
   countDown() {
-    if (this.state.secondsRemaining > 0) {
+    if (this.state.secondsRemaining > 1) {
       this.setState({secondsRemaining: 59 - (new Date().getSeconds())});
     } else {
+      if (this.props.currentUser.key === this.props.item.highest_bidder_key) {
+        this.setState({ label: "You won!"});
+      }
+      this.setState({ isModalVisible: true });
       this.setState({secondsRemaining: 59});
     }
   }
 
+  // showModal() {
+  //   const { item } = this.props;
+  //   if (this.props.currentUser.key === this.props.item.highest_bidder_key) {
+  //     <View>
+  //       <Text>You won! {item.title} is yours at {item.highest_bid}!</Text>
+  //     </View>;
+  //   } else {
+  //     <View>
+  //       <Text>You lost! Play again</Text>
+  //     </View>;
+  //   }
+    // console.log("modal here");
+  // }
+
 
   render() {
-    console.log(this.state.secondsRemaining);
     return (
       <View>
         <Text>{this.state.secondsRemaining}</Text>
+
+      <Modal
+        isVisible={this.state.isModalVisible}
+        onBackdropPress={() => this.setState({ isModalVisible: false, label: "loser" })}
+      >
+      <View>
+
+
+          <Text style={{color:"red"}}>{this.state.label}</Text>
+
       </View>
+
+      </Modal>
+    </View>
     );
   }
 
