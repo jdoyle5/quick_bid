@@ -15,7 +15,8 @@ export default class Timer extends Component {
     this.state = {
       secondsRemaining: 59 - (new Date().getSeconds()),
       isModalVisible: false,
-      label: "loser",
+      label: "You lost",
+      currentItem: this.props.item
     };
     this.countDown = this.countDown.bind(this);
   }
@@ -32,8 +33,8 @@ export default class Timer extends Component {
     if (this.state.secondsRemaining > 1) {
       this.setState({secondsRemaining: 59 - (new Date().getSeconds())});
     } else {
-      if (this.props.currentUser.key === this.props.item.highest_bidder_key) {
-        this.setState({ label: "You won!"});
+      if (this.props.currentUser.key === this.state.currentItem.highest_bidder_key) {
+        this.setState({ label: "You won"});
       }
       this.setState({ isModalVisible: true });
       this.setState({secondsRemaining: 59});
@@ -62,12 +63,12 @@ export default class Timer extends Component {
 
       <Modal
         isVisible={this.state.isModalVisible}
-        onBackdropPress={() => this.setState({ isModalVisible: false, label: "loser" })}
+        onBackdropPress={() => this.setState({ isModalVisible: false, label: "you lost" })}
       >
       <View>
 
 
-          <Text style={{color:"red"}}>{this.state.label}</Text>
+          <Text style={{color:"red"}}>{this.state.label} {this.state.currentItem.title} at ${this.state.currentItem.highest_bid}! Play again.</Text>
 
       </View>
 
