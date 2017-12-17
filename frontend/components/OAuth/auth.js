@@ -81,10 +81,10 @@ export default class Auth extends Component {
   };
 
   // Handle Login with Facebook button tap
-  loginWithFacebook = () => this.openURL('http://localhost:3000/auth/facebook');
+  loginWithFacebook = () => this.openURL('https://quick-bid.herokuapp.com/auth/facebook');
 
   // Handle Login with Google button tap
-  loginWithGoogle = () => this.openURL('http://localhost:3000/auth/google');
+  loginWithGoogle = () => this.openURL('https://quick-bid.herokuapp.com/auth/google');
 
   // Open URL in a browser
   openURL = (url) => {

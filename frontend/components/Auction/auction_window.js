@@ -15,19 +15,23 @@ export default class AuctionWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // current_bid: this.props.item.highest_bid,
+      highest_bid: this.getStartingBid.bind(this)
     };
 
     this.onReceivedItem = this.onReceivedItem.bind(this);
-    this.socket = ioClient('http://localhost:3000');
+    this.socket = ioClient('https://quick-bid.herokuapp.com/');
     this.socket.emit('Client connected!');
     this.socket.on('auction item', this.onReceivedItem);
 
     this.increaseBid = this.increaseBid.bind(this);
     // this.bid = 100;
     this.nextBid = this.nextBid.bind(this);
+
   }
 
+  getStartingBid() {
+    return this.props.item.msrp * .2;
+  }
 
   onReceivedItem(item) {
     console.log("current auction item");

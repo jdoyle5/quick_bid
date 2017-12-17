@@ -43,7 +43,8 @@ const TabNav = TabNavigator ({
           <FontAwesome>{Icons.home}</FontAwesome>
         </Text>
       ),
-      title: "Home"
+      title: "Home",
+      header: "Home"
     })
   },
   Live: {

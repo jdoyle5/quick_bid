@@ -1,5 +1,5 @@
 export const fetchItems = () => {
-  return fetch('http://localhost:3000/v1/items.json')
+  return fetch('https://quick-bid.herokuapp.com/v1/items.json')
     .then(response => (
       JSON.parse(response._bodyText)
     )
