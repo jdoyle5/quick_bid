@@ -11,7 +11,7 @@ import SplashContainer from './splash_container.js';
 
 const Splash = props => {
   return (
-      <SplashContainer navigation={props.navigation} />
+    <SplashContainer navigation={props.navigation} />
   );
 };
 
