@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Text, View, ScrollView, Image, StyleSheet, TouchableHighlight, Animated } from 'react-native';
 import { receiveItems } from '../../actions/item_actions';
+import moment from 'moment';
 
 export default class HomeIndexItem extends Component {
 
@@ -55,6 +56,9 @@ export default class HomeIndexItem extends Component {
         icon = this.icons['up'];   //Step 4
     }
 
+    // const startingBid = Math.round(item.msrp * .2);
+    const bidTime = moment(item.bid_time).format('MMMM Do YYYY, h:mm:ss a');
+
     return (
       <Animated.View style={[styles.container, {height: this.state.animation}]}>
         <View style={styles.container} >
@@ -70,7 +74,10 @@ export default class HomeIndexItem extends Component {
           </View>
           <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
             <Text style={{color: '#3d5c68'}}> {item.description} </Text>
-          <Image source={image} style={{width:'100%', height: 350, marginBottom: 40}} ></Image>
+            <Image source={image} style={{width:'100%', height: 350, marginBottom: 40}} ></Image>
+            <Text style={styles.info}>MSRP: ${item.msrp}</Text>
+            <Text style={styles.info}>Auction Starts:</Text>
+            <Text style={styles.info}>{bidTime}</Text>
           </View>
         </View>
       </Animated.View>
@@ -104,44 +111,15 @@ var styles = StyleSheet.create({
         height  : 25
     },
     body        : {
-        padding     : 10,
+        padding     : 30,
         paddingTop  : 0,
         alignItems: 'center'
     },
     center : {
       alignItems: 'center'
+    },
+    info: {
+      fontSize: 16,
+      color: '#3d5c68'
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////

@@ -9,25 +9,38 @@ import {
 } from 'react-native';
 import ioClient from 'socket.io-client';
 import Timer from './timer';
+import Modal from 'react-native-modal';
 
 
 export default class AuctionWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // current_bid: this.props.item.highest_bid,
     };
-
     this.onReceivedItem = this.onReceivedItem.bind(this);
-    this.socket = ioClient('http://localhost:3000');
+    this.socket = ioClient('https://quick-bid.herokuapp.com/');
     this.socket.emit('Client connected!');
     this.socket.on('auction item', this.onReceivedItem);
 
     this.increaseBid = this.increaseBid.bind(this);
-    // this.bid = 100;
     this.nextBid = this.nextBid.bind(this);
+
   }
 
+
+  // winnerModal() {
+  //   const { item } = this.props;
+  //   <View>
+  //     <Text>You won! {item.title} is yours at {item.highest_bid}!</Text>
+  //   </View>;
+  // }
+  //
+  // loserModal() {
+  //   const { item } = this.props;
+  //   <View>
+  //     <Text>You lost! Play again</Text>
+  //   </View>;
+  // }
 
   onReceivedItem(item) {
     console.log("current auction item");
@@ -38,8 +51,6 @@ export default class AuctionWindow extends Component {
   increaseBid(bid) {
     const currentUserKey = this.props.currentUser.key;
     const auctionItemId = this.props.item._id;
-    // console.log(auctionItemId);
-    // const bidAmount = this.incrementBid();
     this.socket.emit('Increase bid', currentUserKey, this.nextBid(), auctionItemId);
   }
 
@@ -63,20 +74,21 @@ export default class AuctionWindow extends Component {
       );
     }
     return (
+
       <View style={styles.container}>
         <Text style={styles.titleContainer}>{item.title}</Text>
-        <Timer/>
-      <Text style={styles.bidText}>Highest Bid: ${item.highest_bid}</Text>
-    <Image source={image} style={{width: '90%', height: 350, marginBottom: 30, borderRadius: 10}}/>
-      <View style={styles.buttonContain}>
-        <TouchableOpacity onPress={this.increaseBid}>
-          <View style={styles.bidContain}>
-            <Text style={styles.bidButton}>
-              ${this.nextBid()}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <Timer item={item} currentUser={this.props.currentUser}/>
+        <Text style={styles.bidText}>Highest Bid: ${item.highest_bid}</Text>
+        <Image source={image} style={{width: '90%', height: 350, marginBottom: 30, borderRadius: 10}}/>
+        <View style={styles.buttonContain}>
+          <TouchableOpacity onPress={this.increaseBid}>
+            <View style={styles.bidContain}>
+              <Text style={styles.bidButton}>
+                ${this.nextBid()}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -120,3 +132,4 @@ var styles = StyleSheet.create({
       alignItems: 'center'
     }
 });
+
