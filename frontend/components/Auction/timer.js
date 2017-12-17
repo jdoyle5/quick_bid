@@ -33,10 +33,10 @@ export default class Timer extends Component {
     if (this.state.secondsRemaining > 1) {
       this.setState({secondsRemaining: 59 - (new Date().getSeconds())});
     } else {
-      if (this.props.currentUser.key === this.state.currentItem.highest_bidder_key) {
+      if (this.props.currentUser.key === this.props.item.highest_bidder_key && this.props.item.highest_bid !== 0) {
         this.setState({ label: "You won"});
+        this.setState({ isModalVisible: true });
       }
-      this.setState({ isModalVisible: true });
       this.setState({secondsRemaining: 59});
     }
   }
