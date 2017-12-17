@@ -73,7 +73,7 @@ export default class HomeIndexItem extends Component {
             </View>
           </View>
           <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
-            <Text style={styles.info}>{item.description}</Text>
+            <Text style={{color: '#3d5c68'}}> {item.description} </Text>
             <Image source={image} style={{width:'100%', height: 350, marginBottom: 40}} ></Image>
             <Text style={styles.info}>MSRP: ${item.msrp}</Text>
             <Text style={styles.info}>Auction Starts:</Text>
@@ -84,47 +84,6 @@ export default class HomeIndexItem extends Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#FFF',
-//   },
-//   content: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     margin: 20,
-//     backgroundColor: 'black',
-//   },
-//   avatar: {
-//     margin: 20,
-//   },
-//   avatarImage: {
-//     borderRadius: 50,
-//     height: 100,
-//     width: 100,
-//   },
-//   header: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//     color: 'white'
-//   },
-//   text: {
-//     textAlign: 'center',
-//     color: '#333',
-//     marginBottom: 5,
-//   },
-//   buttons: {
-//     justifyContent: 'space-between',
-//     flexDirection: 'row',
-//     margin: 20,
-//     marginBottom: 30,
-//   },
-// });
-
-
 
 var styles = StyleSheet.create({
     container   : {

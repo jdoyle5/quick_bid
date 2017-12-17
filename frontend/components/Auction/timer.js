@@ -58,23 +58,29 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <View>
+
+      <View >
+        <Text style={styles.titleContainer}> Time Left: {this.state.secondsRemaining} </Text>
         <Text>{this.state.secondsRemaining}</Text>
-
-      <Modal
-        isVisible={this.state.isModalVisible}
-        onBackdropPress={() => this.setState({ isModalVisible: false, label: "you lost" })}
-      >
-      <View>
-
-
-          <Text style={{color:"red"}}>{this.state.label} {this.state.currentItem.title} at ${this.state.currentItem.highest_bid}! Play again.</Text>
-
+        <Modal
+          isVisible={this.state.isModalVisible}
+          onBackdropPress={() => this.setState({ isModalVisible: false, label: "you lost" })}>
+          <View>
+            <Text style={{color:"red"}}>{this.state.label} {this.state.currentItem.title} at ${this.state.currentItem.highest_bid}! Play again.</Text>
+          </View>
+        </Modal>
       </View>
-
-      </Modal>
-    </View>
     );
   }
 
 }
+
+
+var styles = StyleSheet.create({
+    titleContainer : {
+      color: 'red',
+      fontSize: 25,
+      fontWeight: 'bold',
+      padding: 10,
+    }
+});

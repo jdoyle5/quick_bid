@@ -67,30 +67,69 @@ export default class AuctionWindow extends Component {
     let image = {uri: item.img_url};
     if (!this.props.item.title) {
       return (
-        <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
+        <View style={styles.container}>
           <Text>Our products were so popular, they've sold out!</Text>
           <Text>Please check back soon. We are working hard to get more items to you!</Text>
         </View>
       );
     }
     return (
-      <View style={{flex: 1, backgroundColor: "orange", paddingTop: 20}}>
 
-        <Text>Highest Bid</Text>
-        <Text>{item.highest_bid}</Text>
-        <Text>{item.title}</Text>
-        <Image source={image} style={{width: '100%', height: 400, marginBottom: 40}}/>
-        <TouchableOpacity onPress={this.increaseBid}>
-          <Text>
-            Increase Your Bid
-            {this.nextBid()}
-          </Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+        <Text style={styles.titleContainer}>{item.title}</Text>
         <Timer item={item} currentUser={this.props.currentUser}/>
-
-
+        <Text style={styles.bidText}>Highest Bid: ${item.highest_bid}</Text>
+        <Image source={image} style={{width: '90%', height: 350, marginBottom: 30, borderRadius: 10}}/>
+        <View style={styles.buttonContain}>
+          <TouchableOpacity onPress={this.increaseBid}>
+            <View style={styles.bidContain}>
+              <Text style={styles.bidButton}>
+                ${this.nextBid()}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 
 }
+
+var styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    titleContainer : {
+      color: 'steelblue',
+      fontSize: 25,
+      fontWeight: 'bold',
+      padding: 10
+
+    },
+    currentBid: {
+      flex    : 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    bidText: {
+      color: 'steelblue',
+      fontSize: 20,
+      fontWeight: 'bold',
+      padding: 20
+    },
+    bidButton: {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    bidContain: {
+      padding: 10,
+      backgroundColor: 'orange',
+      borderRadius: 10,
+      width: 120,
+      alignItems: 'center'
+    }
+});
+
