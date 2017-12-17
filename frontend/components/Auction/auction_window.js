@@ -16,6 +16,7 @@ export default class AuctionWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
     };
     this.onReceivedItem = this.onReceivedItem.bind(this);
     this.socket = ioClient('https://quick-bid.herokuapp.com/');
@@ -26,21 +27,6 @@ export default class AuctionWindow extends Component {
     this.nextBid = this.nextBid.bind(this);
 
   }
-
-
-  // winnerModal() {
-  //   const { item } = this.props;
-  //   <View>
-  //     <Text>You won! {item.title} is yours at {item.highest_bid}!</Text>
-  //   </View>;
-  // }
-  //
-  // loserModal() {
-  //   const { item } = this.props;
-  //   <View>
-  //     <Text>You lost! Play again</Text>
-  //   </View>;
-  // }
 
   onReceivedItem(item) {
     console.log("current auction item");
@@ -132,4 +118,3 @@ var styles = StyleSheet.create({
       alignItems: 'center'
     }
 });
-

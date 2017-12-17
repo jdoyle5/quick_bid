@@ -15,7 +15,6 @@ export default class Timer extends Component {
     this.state = {
       secondsRemaining: 59 - (new Date().getSeconds()),
       isModalVisible: false,
-      label: "You lost",
       currentItem: this.props.item
     };
     this.countDown = this.countDown.bind(this);
@@ -34,26 +33,12 @@ export default class Timer extends Component {
       this.setState({secondsRemaining: 59 - (new Date().getSeconds())});
     } else {
       if (this.props.currentUser.key === this.props.item.highest_bidder_key && this.props.item.highest_bid !== 0) {
-        this.setState({ label: "You won"});
+        this.setState({ currentItem: this.props.item});
         this.setState({ isModalVisible: true });
       }
       this.setState({secondsRemaining: 59});
     }
   }
-
-  // showModal() {
-  //   const { item } = this.props;
-  //   if (this.props.currentUser.key === this.props.item.highest_bidder_key) {
-  //     <View>
-  //       <Text>You won! {item.title} is yours at {item.highest_bid}!</Text>
-  //     </View>;
-  //   } else {
-  //     <View>
-  //       <Text>You lost! Play again</Text>
-  //     </View>;
-  //   }
-    // console.log("modal here");
-  // }
 
 
   render() {
@@ -61,14 +46,15 @@ export default class Timer extends Component {
 
       <View >
         <Text style={styles.titleContainer}> Time Left: {this.state.secondsRemaining} </Text>
-        <Text>{this.state.secondsRemaining}</Text>
-        <Modal
-          isVisible={this.state.isModalVisible}
-          onBackdropPress={() => this.setState({ isModalVisible: false, label: "you lost" })}>
-          <View>
-            <Text style={{color:"red"}}>{this.state.label} {this.state.currentItem.title} at ${this.state.currentItem.highest_bid}! Play again.</Text>
-          </View>
-        </Modal>
+        <View style={styles.modalContainer}>
+          <Modal
+            isVisible={this.state.isModalVisible}
+            onBackdropPress={() => this.setState({ isModalVisible: false, label: "you lost", currentItem: this.props.item })}>
+            <View style={styles.winningContainer}>
+              <Text style={styles.winningText}>Congratulations! You won {this.state.currentItem.title} for ${this.state.currentItem.highest_bid}. Play again.</Text>
+            </View>
+          </Modal>
+        </View>
       </View>
     );
   }
@@ -82,5 +68,23 @@ var styles = StyleSheet.create({
       fontSize: 25,
       fontWeight: 'bold',
       padding: 10,
+    },
+    modalContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    winningContainer: {
+      backgroundColor: '#29648A',
+      padding: 22,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 4,
+      borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    winningText: {
+      color: "white",
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'center'
     }
 });
