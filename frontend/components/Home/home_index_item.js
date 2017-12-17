@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Text, View, ScrollView, Image, StyleSheet, TouchableHighlight, Animated } from 'react-native';
 import { receiveItems } from '../../actions/item_actions';
+import moment from 'moment';
 
 export default class HomeIndexItem extends Component {
 
@@ -56,6 +57,7 @@ export default class HomeIndexItem extends Component {
     }
 
     const startingBid = Math.round(item.msrp * .2);
+    const bidTime = moment(item.bid_time).format('MMMM Do YYYY, h:mm:ss a');
 
     return (
       <Animated.View style={[styles.container, {height: this.state.animation}]}>
@@ -73,7 +75,7 @@ export default class HomeIndexItem extends Component {
           <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
             <Text style={{color: '#3d5c68'}}> {item.description} </Text>
           <Image source={image} style={{width:'100%', height: 350, marginBottom: 40, backgroundColor: 'orange'}} ></Image>
-          <Text style={{color: '#3d5c68'}}>Bid Opens: {item.bid_time}</Text>
+          <Text style={{color: '#3d5c68'}}>Bid Opens: {bidTime}</Text>
           <Text style={{color: '#3d5c68'}}>Starting Bid: {startingBid}</Text>
           <Text style={{color: '#3d5c68'}}>MSRP: ${item.msrp}</Text>
           </View>
