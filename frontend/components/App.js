@@ -52,14 +52,14 @@ const AuctionWindow = props => {
 
 
 const App = StackNavigator ({
-  // if (store.getState().session.currentUser) {
-  //   return TabNav;
-  // } else {
-  //   return Login;
-  // }
-  Login: { screen: Authentication, title: "Login" },
-  // Home: { screen: Home },
-  // AuctionWindow: {screen: AuctionWindow, title: "Live"}
+  Login: {
+    screen: Authentication, title: "Login",
+    // navigationOptions: ({ navigation }) => ({
+    //     title: `QuickBid`,
+    //   })
+   }
+}, {
+ headerMode: 'none'
 });
 
 

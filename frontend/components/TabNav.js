@@ -29,12 +29,6 @@ const AuctionWindow = props => {
 };
 
 const TabNav = TabNavigator ({
-  // if (store.getState().session.currentUser) {
-  //   return TabNav;
-  // } else {
-  //   return Login;
-  // }
-  // Login: { screen: Authentication, title: "Login" },
   Home: {
     screen: Home,
     navigationOptions: ({ navigation }) => ({
@@ -44,7 +38,6 @@ const TabNav = TabNavigator ({
         </Text>
       ),
       title: "Home",
-      header: "Home"
     })
   },
   Live: {

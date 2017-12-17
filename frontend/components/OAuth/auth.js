@@ -10,7 +10,8 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 import HomeContainer from '../Home/home_container';
-import TabNav from '../TabNav';
+// import TabNav from '../TabNav';
+import StackNav from '../Splash/StackNav';
 
 // const Home = props => {
 //   return (
@@ -114,7 +115,7 @@ export default class Auth extends Component {
               <View style={styles.avatar}>
                 <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
               </View> */}
-              <TabNav/>
+              <StackNav/>
             </View>
           : // Show Please log in message if not
           <View style={styles.container}>
