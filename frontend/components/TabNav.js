@@ -10,6 +10,7 @@ import { StackNavigator, TabNavigator } from "react-navigation";
 import AuthContainer from './OAuth/auth_container';
 import HomeContainer from './Home/home_container';
 import AuctionWindowContainer from './Auction/auction_window_container';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import configureStore from '../store/store';
 
@@ -28,25 +29,28 @@ const AuctionWindow = props => {
 };
 
 const TabNav = TabNavigator ({
-  // if (store.getState().session.currentUser) {
-  //   return TabNav;
-  // } else {
-  //   return Login;
-  // }
-  // Login: { screen: Authentication, title: "Login" },
   Home: {
+    screen: Home,
     navigationOptions: ({ navigation }) => ({
-      tabBarLabel: 'Index',
       tabBarIcon: () => (
-        <Image
-          source={require('../images/arrow_up.png')}
-          style={[styles.tabicon]}
-        />
-      )
-    }),
-    screen: Home
+        <Text style={{margin: 10, fontSize: 25, textAlign: 'center'}}>
+          <FontAwesome>{Icons.home}</FontAwesome>
+        </Text>
+      ),
+      title: "Home",
+    })
   },
-  Live: {screen: AuctionWindow, title: "Live"},
+  Live: {
+    screen: AuctionWindow,
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: () => (
+        <Text style={{margin: 10, fontSize: 25, textAlign: 'center'}}>
+          <FontAwesome>{Icons.tags}</FontAwesome>
+        </Text>
+      ),
+      title: "Live"
+    }),
+  },
 });
 
 
@@ -66,3 +70,8 @@ const styles = StyleSheet.create({
 });
 
 export default TabNav;
+
+// <Image
+//   source={require('../images/arrow_up.png')}
+//   style={[styles.tabicon]}
+// />
