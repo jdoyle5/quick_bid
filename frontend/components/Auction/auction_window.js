@@ -67,12 +67,16 @@ export default class AuctionWindow extends Component {
         <Text style={styles.titleContainer}>{item.title}</Text>
         <Timer/>
       <Text style={styles.bidText}>Highest Bid: ${item.highest_bid}</Text>
-        <Image source={image} style={{width: '90%', height: 300, marginBottom: 40, borderRadius: 10}}/>
+    <Image source={image} style={{width: '90%', height: 350, marginBottom: 30, borderRadius: 10}}/>
+      <View style={styles.buttonContain}>
         <TouchableOpacity onPress={this.increaseBid}>
-          <Text style={styles.bidButton}>
-            ${this.nextBid()}
-          </Text>
+          <View style={styles.bidContain}>
+            <Text style={styles.bidButton}>
+              ${this.nextBid()}
+            </Text>
+          </View>
         </TouchableOpacity>
+      </View>
       </View>
     );
   }
@@ -84,13 +88,12 @@ var styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       alignItems: 'center',
-      backgroundColor: "#7ea4b3"
     },
     titleContainer : {
-      color: 'white',
-      fontSize: 20,
+      color: 'steelblue',
+      fontSize: 25,
       fontWeight: 'bold',
-      padding: 20
+      padding: 10
 
     },
     currentBid: {
@@ -99,17 +102,21 @@ var styles = StyleSheet.create({
       justifyContent: 'space-between'
     },
     bidText: {
-      color: 'white',
-      fontSize: 15,
+      color: 'steelblue',
+      fontSize: 20,
       fontWeight: 'bold',
       padding: 20
     },
     bidButton: {
       color: 'white',
-      fontSize: 15,
+      fontSize: 20,
       fontWeight: 'bold',
-      padding: 20,
-      backgroundColor: 'steelblue',
-      borderRadius: 10
+    },
+    bidContain: {
+      padding: 10,
+      backgroundColor: 'orange',
+      borderRadius: 10,
+      width: 120,
+      alignItems: 'center'
     }
 });
