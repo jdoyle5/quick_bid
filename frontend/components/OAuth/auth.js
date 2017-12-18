@@ -159,7 +159,7 @@ export default class Auth extends Component {
               </View>
             </View>
             <View style={styles.demoUserButtons}>
-              <View style={styles.demoButton}>
+              <View style={styles.demoButtonOne}>
                 <Button
                   style={styles.demoText}
                   title="Demo User One"
@@ -167,7 +167,7 @@ export default class Auth extends Component {
                   onPress={this.demoUserOne}>Demo Login
                 </Button>
               </View>
-              <View style={styles.demoButton}>
+              <View style={styles.demoButtonTwo}>
                 <Button
                   style={styles.demoText}
                   title="Demo User Two"
@@ -243,7 +243,14 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 30,
   },
-  demoButton: {
+  demoButtonOne: {
+    margin: 50,
+    marginBottom: 5,
+    alignItems: 'center',
+    backgroundColor: 'steelblue',
+    borderRadius: 10
+  },
+  demoButtonTwo: {
     margin: 50,
     marginBottom: 5,
     alignItems: 'center',
