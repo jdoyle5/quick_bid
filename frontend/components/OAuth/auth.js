@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Platform,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
@@ -81,6 +82,38 @@ export default class Auth extends Component {
     }
   };
 
+  demoUserOne = () => {
+    const demo_user = {
+      "key": "1234567890",
+      "name": "Demo User One",
+      "avatar": "www.quick_bid_awesome.com"
+    }
+
+    this.props.receiveCurrentUser(demo_user);
+
+    this.setState({user: demo_user});
+
+    postUser = this.props.postUser;
+
+    this.props.postUser(demo_user);
+  }
+
+  demoUserTwo = () => {
+    const demo_user = {
+      "key": "0987654321",
+      "name": "Demo User Two",
+      "avatar": "www.quick_bid_awesome_sauce.com"
+    }
+
+    this.props.receiveCurrentUser(demo_user);
+
+    this.setState({user: demo_user});
+
+    postUser = this.props.postUser;
+
+    this.props.postUser(demo_user);
+  }
+
   // Handle Login with Facebook button tap
   loginWithFacebook = () => this.openURL('https://quick-bid.herokuapp.com/auth/facebook');
 
@@ -104,30 +137,43 @@ export default class Auth extends Component {
 
   render() {
     const { user } = this.state;
+    console.log(user);
     return (
       <View style={styles.container}>
         { user
-          ? // Show user info if already logged in
+          ?
             <View style={styles.container}>
-              {/* <Text style={styles.header}>
-                Welcome {user.name}!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
-              </View> */}
               <StackNav/>
             </View>
-          : // Show Please log in message if not
+          :
           <View style={styles.container}>
             <View style={styles.content}>
               <Text style={styles.header}>
-                QuickBid
+                quickBid
               </Text>
               <Text style={styles.text}>
                 A new auction bargain every minute! {'\n'}
               </Text>
               <View style={styles.avatar}>
                 <Icon name="hourglass-start" size={100} color="#7ea4b3" />
+              </View>
+            </View>
+            <View style={styles.demoUserButtons}>
+              <View style={styles.demoButtonOne}>
+                <Button
+                  style={styles.demoText}
+                  title="Demo User One"
+                  color="white"
+                  onPress={this.demoUserOne}>Demo Login
+                </Button>
+              </View>
+              <View style={styles.demoButtonTwo}>
+                <Button
+                  style={styles.demoText}
+                  title="Demo User Two"
+                  color="white"
+                  onPress={this.demoUserTwo}>Demo Login
+                </Button>
               </View>
             </View>
             <View style={styles.buttons}>
@@ -183,17 +229,47 @@ const styles = StyleSheet.create({
     fontSize: 70,
     textAlign: 'center',
     margin: 10,
+    color: '#7ea4b3'
   },
   text: {
     textAlign: 'center',
-    color: '#333',
+    color: '#7ea4b3',
     marginBottom: 5,
     fontSize: 20
   },
   buttons: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     margin: 20,
     marginBottom: 30,
   },
+  demoButtonOne: {
+    margin: 50,
+    marginBottom: 5,
+    alignItems: 'center',
+    backgroundColor: 'steelblue',
+    borderRadius: 10
+  },
+  demoButtonTwo: {
+    margin: 50,
+    marginBottom: 5,
+    alignItems: 'center',
+    backgroundColor: '#7ea4b3',
+    borderRadius: 10
+  },
+  demoUserButtons: {
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 30,
+    marginTop: 5
+  },
+  demoText: {
+    borderRadius: 10,
+    color: 'white',
+    width: 50,
+    fontSize: 30,
+    fontWeight: 'bold'
+  }
 });
