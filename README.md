@@ -14,7 +14,6 @@ This app was inspired by the estate sales and auto auctions that team member Max
 * Bidding window - showcases the item details and multi-player bidding functionality
 * Bidding - each click on the ‘Enter bid’ button will increase the current bid by a set increment. The increment will be determined based on that item’s MSRP (i.e. a more expensive item will have a larger bid increment than a less expensive item)
     * real time bidding enabled by websockets
-* The user can set a max bid for each auction item prior to the bidding war
 
 ### Bonus Features
 * Implement categories for easier navigation
@@ -64,14 +63,18 @@ Max Tocarev, Maxine Chui, Joey Doyle, Wilson Chun
     * Keep working on sockets and auction component
     * Debug
 * Day 4 (deployment)
-    * push to Heroku
-    * Basic landing page and emulator
+    * Complete socket implementation
+    * Create auction page
     * Debug
 * Day 5
-    * Style and refine
+    * Push to Heroku
     * Improve landing page
     * Debug
 * Day 6
+    * Create web page
+    * Create emulator (appetize)
+    * Style and refine
     * Bonus features
 * Day 7
+    * Style and refine
     * Bonus features

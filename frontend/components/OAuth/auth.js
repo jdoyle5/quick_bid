@@ -11,14 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 import HomeContainer from '../Home/home_container';
-// import TabNav from '../TabNav';
 import StackNav from '../Splash/StackNav';
-
-// const Home = props => {
-//   return (
-//       <HomeContainer navigation={props.navigation} />
-//   );
-// };
 
 
 export default class Auth extends Component {
@@ -44,9 +37,6 @@ export default class Auth extends Component {
     Linking.removeEventListener('url', this.handleOpenURL);
   };
 
-  // added in max
-
-  // added again
   _navigateTo = (routeName: string) => {
     const actionToDispatch = NavigationActions.reset({
       index: 0,
@@ -63,13 +53,6 @@ export default class Auth extends Component {
       // user: JSON.parse(decodeURI(user_string))
       user
     });
-
-    // APIUtil.postUser(user);
-    // console.log("This is the user in auth.js");
-    // console.log(user);
-    // console.log(this.props);
-    // let crUr = this.props.createUser;
-    // this.props.createUser(user);
 
     this.props.receiveCurrentUser(user);
 

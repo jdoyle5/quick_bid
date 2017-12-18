@@ -12,17 +12,6 @@ import receiveItems from '../../actions/item_actions';
 import HomeIndexItem from './home_index_item';
 
 
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: 'gray',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-// });
-
 var styles = StyleSheet.create({
   container: {
     flex            : 1,
