@@ -82,11 +82,27 @@ export default class Auth extends Component {
     }
   };
 
-  demoUser = () => {
+  demoUserOne = () => {
     const demo_user = {
       "key": "1234567890",
-      "name": "Demo User",
+      "name": "Demo User One",
       "avatar": "www.quick_bid_awesome.com"
+    }
+
+    this.props.receiveCurrentUser(demo_user);
+
+    this.setState({user: demo_user});
+
+    postUser = this.props.postUser;
+
+    this.props.postUser(demo_user);
+  }
+
+  demoUserTwo = () => {
+    const demo_user = {
+      "key": "0987654321",
+      "name": "Demo User Two",
+      "avatar": "www.quick_bid_awesome_sauce.com"
     }
 
     this.props.receiveCurrentUser(demo_user);
@@ -142,13 +158,23 @@ export default class Auth extends Component {
                 <Icon name="hourglass-start" size={100} color="#7ea4b3" />
               </View>
             </View>
-            <View style={styles.demoButton}>
-              <Button
-                style={styles.demoText}
-                title="Demo"
-                color="white"
-                onPress={this.demoUser}>Demo Login
-              </Button>
+            <View style={styles.demoUserButtons}>
+              <View style={styles.demoButton}>
+                <Button
+                  style={styles.demoText}
+                  title="Demo User One"
+                  color="white"
+                  onPress={this.demoUserOne}>Demo Login
+                </Button>
+              </View>
+              <View style={styles.demoButton}>
+                <Button
+                  style={styles.demoText}
+                  title="Demo User Two"
+                  color="white"
+                  onPress={this.demoUserTwo}>Demo Login
+                </Button>
+              </View>
             </View>
             <View style={styles.buttons}>
               <Icon.Button
@@ -218,14 +244,19 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   demoButton: {
-    margin: 37,
-    marginBottom: 30,
+    margin: 50,
+    marginBottom: 5,
     alignItems: 'center',
     backgroundColor: '#7ea4b3',
     borderRadius: 10
-    // height: 150,
-
-
+  },
+  demoUserButtons: {
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 30,
+    marginTop: 5
   },
   demoText: {
     borderRadius: 10,
