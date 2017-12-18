@@ -72,6 +72,7 @@ var styles = StyleSheet.create({
     modalContainer: {
       justifyContent: 'center',
       alignItems: 'center',
+      borderRadius: 20
     },
     winningContainer: {
       backgroundColor: '#29648A',

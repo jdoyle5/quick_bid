@@ -133,7 +133,7 @@ export default class Auth extends Component {
           <View style={styles.container}>
             <View style={styles.content}>
               <Text style={styles.header}>
-                InstaBid
+                quickBid
               </Text>
               <Text style={styles.text}>
                 A new auction bargain every minute! {'\n'}
@@ -203,11 +203,11 @@ const styles = StyleSheet.create({
     fontSize: 70,
     textAlign: 'center',
     margin: 10,
-    color: 'steelblue'
+    color: '#7ea4b3'
   },
   text: {
     textAlign: 'center',
-    color: 'steelblue',
+    color: '#7ea4b3',
     marginBottom: 5,
     fontSize: 20
   },
