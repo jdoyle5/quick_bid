@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Platform,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
@@ -81,6 +82,22 @@ export default class Auth extends Component {
     }
   };
 
+  demoUser = () => {
+    const demo_user = {
+      "key": "1234567890",
+      "name": "Demo User",
+      "avatar": "www.quick_bid_awesome.com"
+    }
+
+    this.props.receiveCurrentUser(demo_user);
+
+    this.setState({user: demo_user});
+
+    postUser = this.props.postUser;
+
+    this.props.postUser(demo_user);
+  }
+
   // Handle Login with Facebook button tap
   loginWithFacebook = () => this.openURL('https://quick-bid.herokuapp.com/auth/facebook');
 
@@ -104,24 +121,19 @@ export default class Auth extends Component {
 
   render() {
     const { user } = this.state;
+    console.log(user);
     return (
       <View style={styles.container}>
         { user
-          ? // Show user info if already logged in
+          ?
             <View style={styles.container}>
-              {/* <Text style={styles.header}>
-                Welcome {user.name}!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
-              </View> */}
               <StackNav/>
             </View>
-          : // Show Please log in message if not
+          :
           <View style={styles.container}>
             <View style={styles.content}>
               <Text style={styles.header}>
-                QuickBid
+                InstaBid
               </Text>
               <Text style={styles.text}>
                 A new auction bargain every minute! {'\n'}
@@ -129,6 +141,14 @@ export default class Auth extends Component {
               <View style={styles.avatar}>
                 <Icon name="hourglass-start" size={100} color="#7ea4b3" />
               </View>
+            </View>
+            <View style={styles.demoButton}>
+              <Button
+                style={styles.demoText}
+                title="Demo"
+                color="white"
+                onPress={this.demoUser}>Demo Login
+              </Button>
             </View>
             <View style={styles.buttons}>
               <Icon.Button
@@ -183,17 +203,35 @@ const styles = StyleSheet.create({
     fontSize: 70,
     textAlign: 'center',
     margin: 10,
+    color: 'steelblue'
   },
   text: {
     textAlign: 'center',
-    color: '#333',
+    color: 'steelblue',
     marginBottom: 5,
     fontSize: 20
   },
   buttons: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     margin: 20,
     marginBottom: 30,
   },
+  demoButton: {
+    margin: 37,
+    marginBottom: 30,
+    alignItems: 'center',
+    backgroundColor: '#7ea4b3',
+    borderRadius: 10
+    // height: 150,
+
+
+  },
+  demoText: {
+    borderRadius: 10,
+    color: 'white',
+    width: 50,
+    fontSize: 30,
+    fontWeight: 'bold'
+  }
 });
