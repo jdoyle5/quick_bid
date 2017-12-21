@@ -1,6 +1,6 @@
 # QuickBid
 
-QuickBid is a 60 second live auction app aimed at helping companies eliminate surplus inventory fast and minimize deadweight loss.
+[QuickBid](https://quickbid.wixsite.com/quickbid) is a 60 second live auction app aimed at helping companies eliminate surplus inventory fast and minimize deadweight loss.
 
 ## Background & Overview
 
