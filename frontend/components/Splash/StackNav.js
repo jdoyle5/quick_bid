@@ -19,7 +19,7 @@ const StackNav = StackNavigator ({
   splash: {
     screen: Splash,
     navigationOptions: ({ navigation }) => ({
-      title: "QuickBid",
+      title: "quickBid",
     })
   }
 });
