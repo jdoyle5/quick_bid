@@ -31,11 +31,11 @@ Allow users to easily log in using Facebook or Google before accessing the main 
 
 ### Dashboard
 
-![Dashboard](https://github.com/jdoyle5/quick_bid/blob/master/docs/screenshots/Dashboard1.png)
+![Dashboard](https://github.com/jdoyle5/quick_bid/blob/master/docs/screenshots/Dashboard_1.png)
 
 Features a list of all the items available for bidding.
 
-![Dashboard2](https://github.com/jdoyle5/quick_bid/blob/master/docs/screenshots/Dashboard2.png)
+![Dashboard2](https://github.com/jdoyle5/quick_bid/blob/master/docs/screenshots/Dashboard_2.png)
 
 Clicking on an item will display additional information; the item's MSRP and the auction time for the item.
 
