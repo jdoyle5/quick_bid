@@ -1,6 +1,6 @@
-# QuickBid
+# quickBid
 
-[QuickBid](https://quickbid.wixsite.com/quickbid) is a 60 second live auction app aimed at helping companies eliminate surplus inventory fast and minimize deadweight loss.
+[quickBid](https://quickbid.wixsite.com/quickbid) is a 60 second live auction app aimed at helping companies eliminate surplus inventory fast and minimize deadweight loss.
 
 ## Table of Contents
 
@@ -42,6 +42,30 @@ Clicking on an item will display additional information; the item's MSRP and the
 ### Bidding window
 
 ![Bidding Window](https://github.com/jdoyle5/quick_bid/blob/master/docs/screenshots/Auction_Window.png)
+
+```javascript
+//socket.js
+
+export const increaseBid = (userKey, bidAmount, auctionItemId, socket) => {
+  Item.findOne({bid_time: bidTime()}).exec((err, foundItem) => {
+    if (foundItem.id === auctionItemId) {
+      Item.findOneAndUpdate({bid_time: bidTime()}, {
+        "$set": {
+          "highest_bid": bidAmount,
+          "highest_bidder_key": userKey
+        }
+      }, {new: true}
+    ).exec((err2, updatedItem) => {
+        socket.emit('auction item', updatedItem);
+        if (err2) {
+          console.log(err2);
+        }
+      });
+    }
+
+  });
+
+```
 
 Showcases the item details and multi-player real time bidding functionality enabled by websockets. By clicking on the yellow button with the current bid price, it will increase the current bid by a set increment. The increment will be determined based on that item’s MSRP (i.e. a more expensive item will have a larger bid increment than a less expensive item)
 

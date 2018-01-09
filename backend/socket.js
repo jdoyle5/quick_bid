@@ -25,9 +25,7 @@ export const _getAuctionItem = (socket) => {
 // };
 
 export const increaseBid = (userKey, bidAmount, auctionItemId, socket) => {
-  // console.log("checking bid");
   Item.findOne({bid_time: bidTime()}).exec((err, foundItem) => {
-    // console.log(foundItem);
     if (foundItem.id === auctionItemId) {
       Item.findOneAndUpdate({bid_time: bidTime()}, {
         "$set": {
@@ -36,9 +34,7 @@ export const increaseBid = (userKey, bidAmount, auctionItemId, socket) => {
         }
       }, {new: true}
     ).exec((err2, updatedItem) => {
-      // console.log("executed bid");
         socket.emit('auction item', updatedItem);
-        // console.log(updatedItem);
         if (err2) {
           console.log(err2);
         }
